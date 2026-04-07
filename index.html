@@ -815,6 +815,29 @@ function openArticle(post) {
   showPage('article');
 }
  
+function renderPosts(posts) {
+  var grid = document.getElementById('blog-grid');
+  var loading = document.getElementById('blog-loading');
+  var empty = document.getElementById('blog-empty');
+  posts.sort(function(a,b){ return new Date(b.date) - new Date(a.date); });
+  loading.style.display = 'none';
+  if (posts.length === 0) { empty.style.display='block'; return; }
+  grid.style.display = 'grid';
+  grid.innerHTML = '';
+  posts.forEach(function(post, i) {
+    var card = document.createElement('div');
+    card.className = 'blog-card';
+    card.innerHTML =
+      '<div class="blog-card-num">0'+(i+1)+'</div>'+
+      '<div class="blog-card-category">'+(post.category||'Matrixter')+'</div>'+
+      '<div class="blog-card-title">'+(post.title||'Untitled')+'</div>'+
+      '<div class="blog-card-body">'+(post.summary||'')+'</div>'+
+      '<div style="margin-top:1.5rem;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);">Read More &#8594;</div>';
+    card.addEventListener('click', function(){ openArticle(post); });
+    grid.appendChild(card);
+  });
+}
+ 
 function loadBlogPosts() {
   var grid = document.getElementById('blog-grid');
   var loading = document.getElementById('blog-loading');
@@ -823,33 +846,24 @@ function loadBlogPosts() {
   loading.style.display = 'block';
   grid.style.display = 'none';
   empty.style.display = 'none';
-  fetch(GITHUB_API)
-    .then(function(r){ return r.json(); })
+  var RAW = 'https://raw.githubusercontent.com/Matrixter1/matrixter-website/main/_posts/';
+  fetch(GITHUB_API, { headers: {'Accept':'application/vnd.github.v3+json'} })
+    .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
     .then(function(files) {
       var mdFiles = Array.isArray(files) ? files.filter(function(f){ return f.name.endsWith('.md'); }) : [];
       if (mdFiles.length === 0) { loading.style.display='none'; empty.style.display='block'; return; }
-      Promise.all(mdFiles.map(function(f){ return fetch(f.download_url).then(function(r){ return r.text(); }); }))
-        .then(function(contents) {
-          var posts = contents.map(parseFrontMatter);
-          posts.sort(function(a,b){ return new Date(b.date) - new Date(a.date); });
-          loading.style.display = 'none';
-          grid.style.display = 'grid';
-          grid.innerHTML = '';
-          posts.forEach(function(post, i) {
-            var card = document.createElement('div');
-            card.className = 'blog-card';
-            card.innerHTML =
-              '<div class="blog-card-num">0'+(i+1)+'</div>'+
-              '<div class="blog-card-category">'+(post.category||'Matrixter')+'</div>'+
-              '<div class="blog-card-title">'+(post.title||'Untitled')+'</div>'+
-              '<div class="blog-card-body">'+(post.summary||'')+'</div>'+
-              '<div style="margin-top:1.5rem;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);">Read More &#8594;</div>';
-            card.addEventListener('click', function(){ openArticle(post); });
-            grid.appendChild(card);
-          });
-        });
+      Promise.all(mdFiles.map(function(f){
+        return fetch(RAW + f.name).then(function(r){ return r.text(); }).then(parseFrontMatter);
+      })).then(renderPosts);
     })
-    .catch(function(){ loading.style.display='none'; empty.style.display='block'; });
+    .catch(function(err){
+      console.warn('Blog error:', err);
+      loading.style.display = 'none';
+      empty.style.display = 'block';
+      document.getElementById('blog-empty').innerHTML =
+        '<p style="color:var(--text3);font-size:14px;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1.5rem;">Could not load posts — please try again</p>'+
+        '<button onclick="loadBlogPosts()" style="background:none;border:0.5px solid var(--border);color:var(--gold);font-family:var(--font-body);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;padding:10px 24px;cursor:pointer;">Retry</button>';
+    });
 }
  
 var _origShowPage = showPage;
