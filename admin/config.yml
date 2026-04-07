@@ -1,0 +1,22 @@
+backend:
+  name: git-gateway
+  branch: main
+ 
+media_folder: "images/uploads"
+ 
+site_url: https://www.matrixter.com
+display_url: https://www.matrixter.com
+ 
+collections:
+  - name: "blog"
+    label: "Blog Posts"
+    folder: "_posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Category", name: "category", widget: "select", options: ["Awakening", "Technology", "Vision", "Consciousness", "Pulse", "Community"] }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Summary", name: "summary", widget: "text", hint: "Short description shown on the blog card" }
+      - { label: "Body", name: "body", widget: "markdown" }
+      - { label: "Featured", name: "featured", widget: "boolean", default: false, hint: "Show this post at the top of the blog" }
