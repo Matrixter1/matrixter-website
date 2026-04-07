@@ -710,7 +710,7 @@
   </footer>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 function createStars() {
   var container = document.getElementById('stars');
   if (!container) return;
@@ -766,7 +766,7 @@ document.addEventListener('DOMContentLoaded', function() {
         btn.disabled = false;
       });
   });
-});-e 
+});
 </script>
 <script>
 // ── BLOG: fetch posts from GitHub
@@ -871,6 +871,7 @@ showPage = function(id) {
   _origShowPage(id);
   if (id === 'blog') loadBlogPosts();
 };
+</script>
 <script>
 if (window.netlifyIdentity) {
   window.netlifyIdentity.on("init", function(user) {
