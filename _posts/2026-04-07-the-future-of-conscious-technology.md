@@ -1,7 +1,7 @@
 ---
 title: The Future of Conscious Technology
 category: Technology
-date: 2026-04-07T22:51:00.000+02:00
+date: 2026-04-07T23:00:00.000+02:00
 summary: >-
   Technology has shifted from empowering humans to subtly shaping and limiting
   them.
