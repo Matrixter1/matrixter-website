@@ -104,14 +104,16 @@
   .nav-links a {
     color: var(--text2);
     text-decoration: none;
-    font-size: 11px;
-    letter-spacing: 0.12em;
+    font-size: 12px;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    font-weight: 500;
-    transition: color 0.2s;
+    font-weight: 600;
+    transition: color 0.2s, border-color 0.2s;
     cursor: pointer;
+    padding-bottom: 3px;
+    border-bottom: 1px solid transparent;
   }
-  .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+  .nav-links a:hover, .nav-links a.active { color: var(--gold); border-bottom-color: var(--gold); }
   .nav-mobile-btn { display: none; background: none; border: none; color: var(--text); cursor: pointer; font-size: 22px; }
   .hero {
     min-height: 100vh;
@@ -185,24 +187,25 @@
     z-index: 1;
   }
   .hero-body {
-    max-width: 560px;
-    font-size: 16px;
-    color: var(--text2);
-    line-height: 1.8;
+    max-width: 580px;
+    font-size: 17px;
+    color: #b8b4ae;
+    line-height: 1.9;
     margin-bottom: 3rem;
     position: relative;
     z-index: 1;
+    font-weight: 400;
   }
   .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; position: relative; z-index: 1; }
   .btn-primary {
     display: inline-block;
-    padding: 14px 36px;
+    padding: 15px 40px;
     background: var(--gold);
     color: #060608;
     font-family: var(--font-body);
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 700;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     text-decoration: none;
     border: none;
@@ -212,18 +215,18 @@
   .btn-primary:hover { background: var(--gold2); transform: translateY(-1px); }
   .btn-outline {
     display: inline-block;
-    padding: 14px 36px;
-    background: transparent;
+    padding: 15px 40px;
+    background: rgba(255,255,255,0.04);
     color: var(--text);
     font-family: var(--font-body);
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 600;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     text-decoration: none;
-    border: 0.5px solid rgba(255,255,255,0.25);
+    border: 1px solid rgba(255,255,255,0.3);
     cursor: pointer;
-    transition: border-color 0.2s, color 0.2s, transform 0.15s;
+    transition: border-color 0.2s, color 0.2s, background 0.2s, transform 0.15s;
   }
   .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-1px); }
   .btn-ghost {
@@ -260,7 +263,7 @@
     margin-bottom: 1.5rem;
   }
   .section-title em { font-style: italic; color: var(--gold); }
-  .section-body { font-size: 16px; color: var(--text2); max-width: 560px; line-height: 1.85; }
+  .section-body { font-size: 17px; color: #b8b4ae; max-width: 580px; line-height: 1.9; font-weight: 400; }
   .divider { width: 100%; height: 0.5px; background: var(--border); }
   .divider-section { max-width: 1200px; margin: 0 auto; padding: 0 5vw; }
   .values-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1px; background: var(--border); margin-top: 4rem; }
@@ -490,7 +493,7 @@
     <div class="hero-tagline">Awaken &nbsp;&middot;&nbsp; Empower &nbsp;&middot;&nbsp; Transcend</div>
     <p class="hero-body">Matrixter is a movement built on truth, authenticity, and sovereignty. We are here to challenge the system, expand awareness, and help you reconnect with who you truly are.</p>
     <div class="hero-ctas">
-      <button class="btn-primary" onclick="showPage('pulse')">Explore Pulse</button>
+      <a href="https://pulse.matrixter.com" class="btn-primary" target="_blank" style="text-decoration:none;">Explore Pulse</a>
       <button class="btn-outline" onclick="showPage('contact')">Join the Movement</button>
     </div>
   </section>
