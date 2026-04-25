@@ -1,0 +1,43 @@
+{
+  "generatedAt": "2026-04-25T18:07:42.514Z",
+  "displayUpdatedAt": "25 April 2026",
+  "note": "Global figures are rounded estimates. Population and births are refreshed daily from public demographic datasets; language, country, religion, and genetics figures are reference values.",
+  "stats": {
+    "population": {
+      "value": 8200000000,
+      "short": "8.2B",
+      "label": "Hearts Beating Now",
+      "source": "World Bank WDI population estimate"
+    },
+    "birthsPerDay": {
+      "value": 385000,
+      "short": "385,000",
+      "label": "Born Today",
+      "source": "World Bank WDI crude birth rate estimate"
+    },
+    "livingLanguages": {
+      "value": 7159,
+      "short": "7,159",
+      "label": "Languages Spoken",
+      "source": "Ethnologue public living language count"
+    },
+    "countries": {
+      "value": 195,
+      "short": "195",
+      "label": "Nations - One Earth",
+      "source": "Common reference count of sovereign states"
+    },
+    "religions": {
+      "value": "10K+",
+      "short": "10K+",
+      "label": "Religion",
+      "source": "Approximate reference figure"
+    },
+    "geneticSimilarity": {
+      "value": "99.9%",
+      "short": "99.9%",
+      "label": "Genetic Similarity",
+      "source": "Common scientific shorthand"
+    }
+  }
+}

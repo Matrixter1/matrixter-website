@@ -554,6 +554,16 @@ section {
   color: var(--text-soft);
   font-weight: 400;
 }
+.stats-note {
+  max-width: 760px;
+  margin: 2.25rem auto 0;
+  color: var(--text-faint);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  line-height: 1.8;
+  text-align: center;
+  text-transform: uppercase;
+}
 
 /* ============================================================
    SECTION 4: THE 99.9%
@@ -1077,22 +1087,23 @@ footer .copy {
 
     <div class="stats-grid reveal-stagger">
       <div class="stat">
-        <span class="num" data-counter="8200000000" data-format="abbr">0</span>
+        <span class="num" data-stat="population" data-counter="8200000000" data-format="abbr">0</span>
         <span class="label">Hearts Beating Now</span>
       </div>
       <div class="stat">
-        <span class="num" data-counter="385000">0</span>
+        <span class="num" data-stat="birthsPerDay" data-counter="385000">0</span>
         <span class="label">Born Today</span>
       </div>
       <div class="stat">
-        <span class="num" data-counter="7164">0</span>
+        <span class="num" data-stat="livingLanguages" data-counter="7159">0</span>
         <span class="label">Languages Spoken</span>
       </div>
       <div class="stat">
-        <span class="num" data-counter="195">0</span>
+        <span class="num" data-stat="countries" data-counter="195">0</span>
         <span class="label">Nations &mdash; One Earth</span>
       </div>
     </div>
+    <p class="stats-note reveal" id="humanityStatsNote">Global figures are rounded estimates. Updated daily.</p>
   </div>
 </section>
 
@@ -1144,7 +1155,7 @@ footer .copy {
             <path d="M10 40c0-7 6-12 14-12s14 5 14 12"/>
           </svg>
         </div>
-        <span class="diff-num">8B</span>
+        <span class="diff-num" data-stat-text="population">8.2B</span>
         <h3>Race</h3>
         <p>Eight billion shades of one humanity. Skin is the soft cover of a story written in the same language &mdash; <em>love</em>.</p>
       </article>
@@ -1157,7 +1168,7 @@ footer .copy {
             <circle cx="24" cy="32" r="8"/>
           </svg>
         </div>
-        <span class="diff-num">10K+</span>
+        <span class="diff-num" data-stat-text="religions">10K+</span>
         <h3>Religion</h3>
         <p>Ten thousand paths walking toward the same sky. Every prayer, in any tongue, is the same human reaching upward for <em>meaning</em>.</p>
       </article>
@@ -1170,7 +1181,7 @@ footer .copy {
             <circle cx="24" cy="24" r="3"/>
           </svg>
         </div>
-        <span class="diff-num">7,164</span>
+        <span class="diff-num" data-stat-text="livingLanguages">7,159</span>
         <h3>Language</h3>
         <p>Seven thousand tongues telling one story: I was here. I loved. I mattered. The words change &mdash; the <em>longing</em> never does.</p>
       </article>
@@ -1182,7 +1193,7 @@ footer .copy {
             <path d="M6 24h36M24 6c5 5 8 11 8 18s-3 13-8 18M24 6c-5 5-8 11-8 18s3 13 8 18"/>
           </svg>
         </div>
-        <span class="diff-num">195</span>
+        <span class="diff-num" data-stat-text="countries">195</span>
         <h3>Location</h3>
         <p>One hundred and ninety-five flags &mdash; one home. The lines on the map are drawn in ink. The earth beneath them is <em>uncut</em>.</p>
       </article>
@@ -1366,6 +1377,40 @@ footer .copy {
       navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
   }
+
+  // ---------- Daily refreshed Humanity stats ----------
+  function applyHumanityStats(data) {
+    if (!data || !data.stats) return;
+
+    document.querySelectorAll('[data-stat]').forEach((el) => {
+      const item = data.stats[el.dataset.stat];
+      if (!item || typeof item.value !== 'number') return;
+      el.dataset.counter = String(item.value);
+      if (!el.classList.contains('in')) el.textContent = '0';
+    });
+
+    document.querySelectorAll('[data-stat-text]').forEach((el) => {
+      const item = data.stats[el.dataset.statText];
+      if (!item) return;
+      el.textContent = item.short || String(item.value);
+    });
+
+    const note = document.getElementById('humanityStatsNote');
+    if (note) {
+      note.textContent = `${data.note || 'Global figures are rounded estimates.'} Updated ${data.displayUpdatedAt || 'daily'}.`;
+    }
+  }
+
+  fetch('../data/humanity-stats.json', { cache: 'no-store' })
+    .then((response) => {
+      if (!response.ok) throw new Error(response.statusText);
+      return response.json();
+    })
+    .then(applyHumanityStats)
+    .catch(() => {
+      const note = document.getElementById('humanityStatsNote');
+      if (note) note.textContent = 'Global figures are rounded estimates. Updated daily when source data is available.';
+    });
 
   // ---------- Reveal on scroll ----------
   const observer = new IntersectionObserver((entries) => {
