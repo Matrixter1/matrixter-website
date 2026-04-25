@@ -439,7 +439,88 @@ section {
 }
 
 /* ============================================================
-   SECTION 2: WHAT WE SHARE — vertical reveal
+   SECTION 2: THE HUMAN WONDER
+   ============================================================ */
+.human-wonder {
+  padding-top: clamp(5rem, 10vh, 8rem);
+  padding-bottom: clamp(5rem, 10vh, 8rem);
+  overflow: hidden;
+}
+.wonder-layout {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+  gap: clamp(2rem, 6vw, 6rem);
+  align-items: center;
+}
+.wonder-stage {
+  min-height: clamp(520px, 72vh, 760px);
+  position: relative;
+}
+.wonder-stage::before {
+  content: '';
+  position: absolute;
+  inset: 8% 4%;
+  background:
+    radial-gradient(ellipse at center, rgba(95, 191, 179, 0.14), transparent 58%),
+    radial-gradient(ellipse at center, rgba(212, 164, 55, 0.1), transparent 68%);
+  filter: blur(8px);
+  pointer-events: none;
+}
+#humanFigureCanvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.wonder-caption {
+  position: absolute;
+  left: 50%;
+  bottom: 1rem;
+  transform: translateX(-50%);
+  color: var(--text-faint);
+  font-size: 0.68rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.wonder-copy .section-label { color: var(--gold); }
+.wonder-copy .section-label::before { background: var(--gold); }
+.wonder-copy .section-prose {
+  max-width: 560px;
+}
+.wonder-systems {
+  list-style: none;
+  margin-top: 2.5rem;
+  display: grid;
+  gap: 1rem;
+}
+.wonder-systems li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1rem;
+  align-items: start;
+  padding: 1.15rem 0;
+  border-bottom: 1px solid rgba(212, 164, 55, 0.1);
+}
+.wonder-systems li:last-child { border-bottom: none; }
+.wonder-systems strong {
+  color: var(--gold);
+  font-size: 0.74rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  min-width: 88px;
+}
+.wonder-systems span {
+  color: var(--text);
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+/* ============================================================
+   SECTION 3: WHAT WE SHARE — vertical reveal
    ============================================================ */
 .share {
   text-align: center;
@@ -483,7 +564,7 @@ section {
 }
 
 /* ============================================================
-   SECTION 3: STATS / HEARTBEAT
+   SECTION 4: STATS / HEARTBEAT
    ============================================================ */
 .stats {
   background: linear-gradient(180deg, transparent, rgba(212, 164, 55, 0.025) 50%, transparent);
@@ -566,7 +647,7 @@ section {
 }
 
 /* ============================================================
-   SECTION 4: THE 99.9%
+   SECTION 5: THE 99.9%
    ============================================================ */
 .dna {
   text-align: center;
@@ -612,7 +693,7 @@ section {
 }
 
 /* ============================================================
-   SECTION 5: THE BEAUTIFUL DIFFERENCES
+   SECTION 6: THE BEAUTIFUL DIFFERENCES
    ============================================================ */
 .differences {
   padding-top: clamp(5rem, 10vh, 8rem);
@@ -631,11 +712,15 @@ section {
 }
 .diff-card {
   position: relative;
+  text-align: left;
   padding: 2.5rem 2rem;
   border: 1px solid rgba(212, 164, 55, 0.12);
   background: linear-gradient(180deg, rgba(212, 164, 55, 0.025), rgba(95, 191, 179, 0.015));
   transition: all 0.5s var(--ease-out);
   overflow: hidden;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
 }
 .diff-card::before {
   content: '';
@@ -649,6 +734,10 @@ section {
 .diff-card:hover {
   border-color: rgba(212, 164, 55, 0.4);
   transform: translateY(-6px);
+}
+.diff-card:focus-visible {
+  outline: 1px solid var(--gold);
+  outline-offset: 4px;
 }
 .diff-card:hover::before { opacity: 1; }
 
@@ -694,9 +783,106 @@ section {
   color: var(--teal);
   font-size: 1.05em;
 }
+.diff-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-top: 1.5rem;
+  color: var(--gold);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 1;
+}
+.diff-action::after {
+  content: '';
+  width: 32px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.65;
+  transition: transform 0.3s var(--ease-out);
+}
+.diff-card:hover .diff-action::after {
+  transform: translateX(6px);
+}
+.insight-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: var(--gutter);
+}
+.insight-modal.open { display: flex; }
+.insight-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.82);
+  backdrop-filter: blur(12px);
+}
+.insight-panel {
+  position: relative;
+  width: min(920px, 100%);
+  max-height: min(760px, 88vh);
+  overflow: auto;
+  padding: clamp(2rem, 5vw, 4rem);
+  border: 1px solid rgba(212, 164, 55, 0.22);
+  background:
+    radial-gradient(ellipse at 20% 0%, rgba(95, 191, 179, 0.08), transparent 55%),
+    linear-gradient(180deg, rgba(10, 10, 13, 0.98), rgba(0, 0, 0, 0.98));
+  box-shadow: 0 26px 90px rgba(0, 0, 0, 0.65);
+}
+.insight-close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.03);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 1.35rem;
+  line-height: 1;
+}
+.insight-kicker {
+  color: var(--teal);
+  font-size: 0.72rem;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+}
+.insight-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.3rem, 5vw, 4rem);
+  color: var(--white);
+  line-height: 1.1;
+  letter-spacing: 0.05em;
+  margin-bottom: 1.5rem;
+}
+.insight-body {
+  color: var(--text);
+  font-size: clamp(1rem, 1.2vw, 1.12rem);
+  line-height: 1.95;
+  max-width: 740px;
+}
+.insight-body p + p { margin-top: 1.25rem; }
+.insight-reflection {
+  margin-top: 2rem;
+  padding-top: 1.6rem;
+  border-top: 1px solid rgba(212, 164, 55, 0.14);
+  color: var(--gold);
+  font-family: var(--font-script);
+  font-size: clamp(1.25rem, 2vw, 1.7rem);
+  font-style: italic;
+  line-height: 1.55;
+}
 
 /* ============================================================
-   SECTION 6: THE QUOTE
+   SECTION 7: THE QUOTE
    ============================================================ */
 .quote {
   text-align: center;
@@ -741,7 +927,7 @@ section {
 }
 
 /* ============================================================
-   SECTION 7: REFLECTION (you are not alone)
+   SECTION 8: REFLECTION (you are not alone)
    ============================================================ */
 .reflection {
   text-align: center;
@@ -771,7 +957,7 @@ section {
 }
 
 /* ============================================================
-   SECTION 8: CTA / JOIN
+   SECTION 9: CTA / JOIN
    ============================================================ */
 .cta {
   text-align: center;
@@ -915,6 +1101,41 @@ footer .copy {
   .scroll-cue { position: static; transform: none; margin-top: 2rem; }
   .scroll-cue::after { height: 32px; }
 }
+@media (max-width: 900px) {
+  .wonder-layout {
+    grid-template-columns: 1fr;
+  }
+  .wonder-stage {
+    min-height: 520px;
+    order: -1;
+  }
+  .wonder-copy {
+    text-align: center;
+  }
+  .wonder-copy .section-label {
+    justify-content: center;
+  }
+  .wonder-copy .section-prose {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .wonder-systems strong {
+    min-width: 72px;
+  }
+}
+@media (max-width: 640px) {
+  .wonder-stage {
+    min-height: 420px;
+  }
+  .wonder-caption {
+    white-space: normal;
+    width: min(300px, 90%);
+    line-height: 1.6;
+  }
+  .insight-panel {
+    max-height: 84vh;
+  }
+}
 </style>
 </head>
 <body>
@@ -1046,6 +1267,39 @@ footer .copy {
 </section>
 
 <!-- ============================================================
+     SECTION: THE HUMAN WONDER
+     ============================================================ -->
+<section class="human-wonder" id="wonder">
+  <div class="wonder-layout">
+    <div class="wonder-stage reveal" aria-label="A luminous transparent human form showing the living systems within">
+      <canvas id="humanFigureCanvas"></canvas>
+      <div class="wonder-caption">A living body. A shared miracle.</div>
+    </div>
+
+    <div class="wonder-copy">
+      <div class="section-label reveal">The Wonder Within</div>
+      <h2 class="section-title reveal">Every human body is <em>a universe in motion.</em></h2>
+      <div class="section-prose reveal">
+        <p>
+          Beneath every identity is the same impossible architecture: a heart keeping rhythm,
+          lungs exchanging sky, nerves carrying lightning, a mind turning sensation into meaning.
+        </p>
+        <p>
+          The miracle is not abstract. It is breathing inside every person you pass.
+        </p>
+      </div>
+
+      <ul class="wonder-systems reveal-stagger">
+        <li><strong>Heart</strong><span>A quiet pulse that has never asked who you are before keeping you alive.</span></li>
+        <li><strong>Breath</strong><span>The same atmosphere moving through every border, body, and language.</span></li>
+        <li><strong>Mind</strong><span>Billions of neurons turning memory, fear, beauty, and hope into one inner world.</span></li>
+        <li><strong>Nerve</strong><span>Signals crossing the body like light, making touch, movement, and feeling possible.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
      SECTION: WHAT WE SHARE
      ============================================================ -->
 <section class="share">
@@ -1148,7 +1402,7 @@ footer .copy {
 
     <div class="diff-grid reveal-stagger">
 
-      <article class="diff-card">
+      <button class="diff-card" type="button" data-insight="race">
         <div class="diff-icon" aria-hidden="true">
           <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4">
             <circle cx="24" cy="18" r="7"/>
@@ -1158,9 +1412,10 @@ footer .copy {
         <span class="diff-num" data-stat-text="population">8.2B</span>
         <h3>Race</h3>
         <p>Eight billion shades of one humanity. Skin is the soft cover of a story written in the same language &mdash; <em>love</em>.</p>
-      </article>
+        <span class="diff-action">Read deeper</span>
+      </button>
 
-      <article class="diff-card">
+      <button class="diff-card" type="button" data-insight="religion">
         <div class="diff-icon" aria-hidden="true">
           <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4">
             <path d="M24 6v36"/>
@@ -1171,9 +1426,10 @@ footer .copy {
         <span class="diff-num" data-stat-text="religions">10K+</span>
         <h3>Religion</h3>
         <p>Ten thousand paths walking toward the same sky. Every prayer, in any tongue, is the same human reaching upward for <em>meaning</em>.</p>
-      </article>
+        <span class="diff-action">Read deeper</span>
+      </button>
 
-      <article class="diff-card">
+      <button class="diff-card" type="button" data-insight="language">
         <div class="diff-icon" aria-hidden="true">
           <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4">
             <path d="M8 20c8-12 24-12 32 0"/>
@@ -1184,9 +1440,10 @@ footer .copy {
         <span class="diff-num" data-stat-text="livingLanguages">7,159</span>
         <h3>Language</h3>
         <p>Seven thousand tongues telling one story: I was here. I loved. I mattered. The words change &mdash; the <em>longing</em> never does.</p>
-      </article>
+        <span class="diff-action">Read deeper</span>
+      </button>
 
-      <article class="diff-card">
+      <button class="diff-card" type="button" data-insight="location">
         <div class="diff-icon" aria-hidden="true">
           <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4">
             <circle cx="24" cy="24" r="18"/>
@@ -1196,9 +1453,10 @@ footer .copy {
         <span class="diff-num" data-stat-text="countries">195</span>
         <h3>Location</h3>
         <p>One hundred and ninety-five flags &mdash; one home. The lines on the map are drawn in ink. The earth beneath them is <em>uncut</em>.</p>
-      </article>
+        <span class="diff-action">Read deeper</span>
+      </button>
 
-      <article class="diff-card">
+      <button class="diff-card" type="button" data-insight="culture">
         <div class="diff-icon" aria-hidden="true">
           <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4">
             <path d="M12 36c0-10 6-18 12-26 6 8 12 16 12 26"/>
@@ -1209,9 +1467,10 @@ footer .copy {
         <span class="diff-num">∞</span>
         <h3>Culture</h3>
         <p>Endless expressions of one spirit &mdash; food, music, dance, story. Each culture is <em>humanity remembering itself</em> in a different key.</p>
-      </article>
+        <span class="diff-action">Read deeper</span>
+      </button>
 
-      <article class="diff-card">
+      <button class="diff-card" type="button" data-insight="time">
         <div class="diff-icon" aria-hidden="true">
           <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4">
             <path d="M24 8c-6 6-10 12-10 18a10 10 0 0020 0c0-6-4-12-10-18z"/>
@@ -1221,11 +1480,23 @@ footer .copy {
         <span class="diff-num">100Y</span>
         <h3>Time on Earth</h3>
         <p>A single human life is roughly a century. Whatever divides us will dissolve. What we shared &mdash; the kindness, the love &mdash; is <em>all that lasts</em>.</p>
-      </article>
+        <span class="diff-action">Read deeper</span>
+      </button>
 
     </div>
   </div>
 </section>
+
+<div class="insight-modal" id="insightModal" aria-hidden="true">
+  <div class="insight-backdrop" data-close-insight></div>
+  <article class="insight-panel" role="dialog" aria-modal="true" aria-labelledby="insightTitle">
+    <button class="insight-close" type="button" aria-label="Close reflection" data-close-insight>&times;</button>
+    <div class="insight-kicker" id="insightKicker">Human Difference</div>
+    <h2 class="insight-title" id="insightTitle"></h2>
+    <div class="insight-body" id="insightBody"></div>
+    <div class="insight-reflection" id="insightReflection"></div>
+  </article>
+</div>
 
 <!-- ============================================================
      SECTION: QUOTE
@@ -1412,6 +1683,110 @@ footer .copy {
       if (note) note.textContent = 'Global figures are rounded estimates. Updated daily when source data is available.';
     });
 
+  // ---------- Difference insight panels ----------
+  const insightContent = {
+    race: {
+      kicker: 'The visible 0.1%',
+      title: 'Race',
+      body: [
+        'Skin is one of the first things the world teaches us to notice. It is also one of the smallest parts of what we are. Beneath it, the same blood warms, the same lungs draw air, the same nervous system reaches for safety and belonging.',
+        'Race has shaped history, pain, pride, beauty, injustice, resistance, and identity. To honor humanity is not to pretend those histories never happened. It is to see them clearly and still remember the deeper truth: no shade of skin makes a person more or less human.',
+        'Difference is real. Separation is taught.'
+      ],
+      reflection: 'The body has many colors. The heartbeat has one language.'
+    },
+    religion: {
+      kicker: 'The search for meaning',
+      title: 'Religion',
+      body: [
+        'Across the world, humans kneel, sing, fast, gather, light candles, bow, meditate, confess, forgive, mourn, and hope. The forms are different. The ache beneath them is familiar.',
+        'Religion is often described as belief, but at its deepest it is also a human gesture: the reaching beyond the visible, the need to place suffering inside meaning, the longing to be held by something larger than the self.',
+        'The tragedy is when paths to the sacred become walls between people. The beauty is that every sincere prayer begins with a shared human vulnerability.'
+      ],
+      reflection: 'Every prayer, in any language, is a human being admitting the universe matters.'
+    },
+    language: {
+      kicker: 'The sound of being alive',
+      title: 'Language',
+      body: [
+        'Language is breath shaped into belonging. A baby cries before it speaks, and even then the message is already universal: I am here. I need. I feel.',
+        'Thousands of languages carry thousands of worlds. Each one holds jokes, grief, recipes, lullabies, warnings, love names, ancestor stories, and words that cannot be perfectly translated.',
+        'When a language disappears, humanity loses a way of seeing. When we listen across language, we recover the truth that meaning is larger than vocabulary.'
+      ],
+      reflection: 'The words change. The longing to be understood does not.'
+    },
+    location: {
+      kicker: 'One planet, many addresses',
+      title: 'Location',
+      body: [
+        'A border can decide a passport, a currency, a law, a flag, a risk, a privilege. But no border changes the sky above it or the human need beneath it.',
+        'Place shapes us deeply. Mountain, desert, city, coast, village, migration, exile, home. The land teaches rhythm. The climate teaches habit. The map writes itself into memory.',
+        'Still, every location is a temporary coordinate on one shared earth. The ground is not divided in the way our stories divide it.'
+      ],
+      reflection: 'We are born somewhere. We belong to Earth.'
+    },
+    culture: {
+      kicker: 'Humanity in color',
+      title: 'Culture',
+      body: [
+        'Culture is how humanity makes life visible. Food, music, clothing, dance, ceremony, humor, manners, mourning, celebration. It is the body of memory passed from one generation to another.',
+        'Culture can comfort and culture can constrain. It can preserve wisdom, and it can preserve wounds. The invitation is not to flatten culture into sameness, but to let every culture become a doorway into the shared human need for meaning.',
+        'A song from one place can move a stranger in another because rhythm reaches below translation.'
+      ],
+      reflection: 'Culture is humanity remembering itself in different keys.'
+    },
+    time: {
+      kicker: 'The brief gift',
+      title: 'Time on Earth',
+      body: [
+        'A human life feels long from inside it and impossibly brief from the edge of history. We are here for a handful of decades, carrying ancient blood, borrowed language, inherited questions, and unfinished dreams.',
+        'Time humbles every difference. Status fades. Arguments dissolve. Bodies age. Empires become footnotes. What remains is what passed through us into others: kindness, courage, creation, truth.',
+        'The miracle is not that life lasts forever. The miracle is that it happens at all.'
+      ],
+      reflection: 'We do not own time. We are entrusted with it.'
+    }
+  };
+
+  const insightModal = document.getElementById('insightModal');
+  const insightTitle = document.getElementById('insightTitle');
+  const insightKicker = document.getElementById('insightKicker');
+  const insightBody = document.getElementById('insightBody');
+  const insightReflection = document.getElementById('insightReflection');
+  let lastInsightTrigger = null;
+
+  function openInsight(key, trigger) {
+    const item = insightContent[key];
+    if (!item || !insightModal) return;
+    lastInsightTrigger = trigger;
+    insightKicker.textContent = item.kicker;
+    insightTitle.textContent = item.title;
+    insightBody.innerHTML = item.body.map((paragraph) => `<p>${paragraph}</p>`).join('');
+    insightReflection.textContent = item.reflection;
+    insightModal.classList.add('open');
+    insightModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    const closeButton = insightModal.querySelector('.insight-close');
+    if (closeButton) closeButton.focus();
+  }
+
+  function closeInsight() {
+    if (!insightModal) return;
+    insightModal.classList.remove('open');
+    insightModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    if (lastInsightTrigger) lastInsightTrigger.focus();
+  }
+
+  document.querySelectorAll('[data-insight]').forEach((card) => {
+    card.addEventListener('click', () => openInsight(card.dataset.insight, card));
+  });
+  document.querySelectorAll('[data-close-insight]').forEach((el) => {
+    el.addEventListener('click', closeInsight);
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && insightModal?.classList.contains('open')) closeInsight();
+  });
+
   // ---------- Reveal on scroll ----------
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
@@ -1476,6 +1851,170 @@ footer .copy {
   }
 
 })();
+</script>
+
+<script type="module">
+import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
+
+const canvas = document.getElementById('humanFigureCanvas');
+if (canvas) {
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(34, 1, 0.1, 100);
+  camera.position.set(0, 0.35, 8.2);
+
+  const renderer = new THREE.WebGLRenderer({
+    canvas,
+    antialias: true,
+    alpha: true
+  });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.setClearColor(0x000000, 0);
+
+  const figure = new THREE.Group();
+  scene.add(figure);
+
+  const gold = new THREE.Color('#D4A437');
+  const teal = new THREE.Color('#5FBFB3');
+  const bone = new THREE.Color('#e8dcc5');
+
+  const bodyMat = new THREE.MeshPhysicalMaterial({
+    color: 0xd8d4c8,
+    transparent: true,
+    opacity: 0.11,
+    roughness: 0.2,
+    metalness: 0,
+    transmission: 0.55,
+    thickness: 0.55,
+    side: THREE.DoubleSide,
+    depthWrite: false
+  });
+  const bodyWireMat = new THREE.MeshBasicMaterial({
+    color: 0x5fbfb3,
+    transparent: true,
+    opacity: 0.22,
+    wireframe: true
+  });
+  const organMat = new THREE.MeshBasicMaterial({
+    color: gold,
+    transparent: true,
+    opacity: 0.82
+  });
+  const lungMat = new THREE.MeshBasicMaterial({
+    color: teal,
+    transparent: true,
+    opacity: 0.38,
+    wireframe: true
+  });
+  const nerveMat = new THREE.LineBasicMaterial({
+    color: 0xebc457,
+    transparent: true,
+    opacity: 0.5
+  });
+  const boneMat = new THREE.MeshBasicMaterial({
+    color: bone,
+    transparent: true,
+    opacity: 0.18,
+    wireframe: true
+  });
+
+  function mesh(geometry, material, position, scale, rotation) {
+    const item = new THREE.Mesh(geometry, material);
+    item.position.set(...position);
+    item.scale.set(...scale);
+    if (rotation) item.rotation.set(...rotation);
+    figure.add(item);
+    return item;
+  }
+
+  const torso = mesh(new THREE.SphereGeometry(1, 48, 48), bodyMat, [0, 0.15, 0], [1.02, 1.85, 0.42]);
+  mesh(new THREE.SphereGeometry(1.01, 32, 32), bodyWireMat, [0, 0.15, 0], [1.04, 1.87, 0.43]);
+  mesh(new THREE.SphereGeometry(0.55, 36, 36), bodyMat, [0, 2.35, 0], [0.82, 1, 0.82]);
+  mesh(new THREE.SphereGeometry(0.56, 24, 24), bodyWireMat, [0, 2.35, 0], [0.82, 1, 0.82]);
+  mesh(new THREE.CylinderGeometry(0.24, 0.36, 0.8, 24), bodyMat, [0, 1.63, 0], [1, 1, 1]);
+
+  const limbGeo = new THREE.CylinderGeometry(0.12, 0.16, 1.8, 20);
+  mesh(limbGeo, bodyMat, [-0.92, 0.15, 0], [1, 1, 1], [0, 0, -0.25]);
+  mesh(limbGeo, bodyMat, [0.92, 0.15, 0], [1, 1, 1], [0, 0, 0.25]);
+  mesh(limbGeo, bodyWireMat, [-0.92, 0.15, 0], [1.04, 1, 1.04], [0, 0, -0.25]);
+  mesh(limbGeo, bodyWireMat, [0.92, 0.15, 0], [1.04, 1, 1.04], [0, 0, 0.25]);
+
+  const legGeo = new THREE.CylinderGeometry(0.17, 0.2, 2.2, 20);
+  mesh(legGeo, bodyMat, [-0.35, -2.15, 0], [1, 1, 1], [0, 0, 0.08]);
+  mesh(legGeo, bodyMat, [0.35, -2.15, 0], [1, 1, 1], [0, 0, -0.08]);
+  mesh(legGeo, bodyWireMat, [-0.35, -2.15, 0], [1.04, 1, 1.04], [0, 0, 0.08]);
+  mesh(legGeo, bodyWireMat, [0.35, -2.15, 0], [1.04, 1, 1.04], [0, 0, -0.08]);
+
+  const spine = mesh(new THREE.CylinderGeometry(0.035, 0.035, 3.05, 16), boneMat, [0, 0.23, -0.08], [1, 1, 1]);
+  const heart = mesh(new THREE.SphereGeometry(0.18, 32, 32), organMat, [-0.18, 0.62, 0.18], [1, 1.15, 1]);
+  const leftLung = mesh(new THREE.SphereGeometry(0.38, 32, 32), lungMat, [-0.33, 0.68, 0.08], [0.72, 1.25, 0.42]);
+  const rightLung = mesh(new THREE.SphereGeometry(0.38, 32, 32), lungMat, [0.33, 0.68, 0.08], [0.72, 1.25, 0.42]);
+  const brain = mesh(new THREE.SphereGeometry(0.34, 28, 28), lungMat, [0, 2.48, 0.08], [1, 0.62, 0.82]);
+
+  function makeLine(points, material = nerveMat) {
+    const geometry = new THREE.BufferGeometry().setFromPoints(points.map((point) => new THREE.Vector3(...point)));
+    const line = new THREE.Line(geometry, material);
+    figure.add(line);
+    return line;
+  }
+
+  makeLine([[0, 2.25, 0.1], [0, 1.4, 0.12], [0, 0.1, 0.12], [0, -1.35, 0.1], [-0.3, -2.9, 0.08]]);
+  makeLine([[0, 2.25, 0.1], [0, 1.4, 0.12], [0, 0.1, 0.12], [0, -1.35, 0.1], [0.3, -2.9, 0.08]]);
+  makeLine([[0, 1.05, 0.12], [-0.75, 0.65, 0.1], [-1.08, -0.8, 0.06]]);
+  makeLine([[0, 1.05, 0.12], [0.75, 0.65, 0.1], [1.08, -0.8, 0.06]]);
+
+  const aura = new THREE.Group();
+  figure.add(aura);
+  for (let i = 0; i < 3; i += 1) {
+    const ring = new THREE.Mesh(
+      new THREE.TorusGeometry(1.75 + i * 0.18, 0.006, 10, 120),
+      new THREE.MeshBasicMaterial({
+        color: i % 2 ? gold : teal,
+        transparent: true,
+        opacity: 0.28 - i * 0.05
+      })
+    );
+    ring.rotation.set(Math.PI / 2.5, i * 0.7, i * 0.6);
+    aura.add(ring);
+  }
+
+  scene.add(new THREE.AmbientLight(0xffffff, 0.4));
+  const key = new THREE.PointLight(0x5fbfb3, 2.5, 12);
+  key.position.set(-2.5, 2.8, 4);
+  scene.add(key);
+  const warm = new THREE.PointLight(0xd4a437, 2.2, 12);
+  warm.position.set(2.5, -0.5, 3.5);
+  scene.add(warm);
+
+  function resizeHumanFigure() {
+    const box = canvas.getBoundingClientRect();
+    const width = Math.max(1, box.width);
+    const height = Math.max(1, box.height);
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
+    renderer.setSize(width, height, false);
+  }
+
+  const resizeObserver = new ResizeObserver(resizeHumanFigure);
+  resizeObserver.observe(canvas);
+  resizeHumanFigure();
+
+  function animate(time) {
+    const t = time * 0.001;
+    figure.rotation.y = t * 0.32;
+    figure.rotation.x = Math.sin(t * 0.45) * 0.05;
+    heart.scale.setScalar(1 + Math.sin(t * 5.2) * 0.13);
+    leftLung.scale.y = 1.25 + Math.sin(t * 1.6) * 0.08;
+    rightLung.scale.y = 1.25 + Math.sin(t * 1.6) * 0.08;
+    brain.material.opacity = 0.34 + Math.sin(t * 2.2) * 0.08;
+    torso.material.opacity = 0.1 + Math.sin(t * 1.1) * 0.025;
+    aura.rotation.y = -t * 0.18;
+    spine.rotation.y = Math.sin(t * 0.8) * 0.2;
+    renderer.render(scene, camera);
+    requestAnimationFrame(animate);
+  }
+
+  requestAnimationFrame(animate);
+}
 </script>
 
 </body>
