@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -468,12 +468,14 @@ section {
   filter: blur(8px);
   pointer-events: none;
 }
-#humanFigureCanvas {
+.wonder-video {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   display: block;
+  object-fit: contain;
+  filter: drop-shadow(0 0 28px rgba(95, 191, 179, 0.22));
 }
 .wonder-caption {
   position: absolute;
@@ -1272,7 +1274,9 @@ footer .copy {
 <section class="human-wonder" id="wonder">
   <div class="wonder-layout">
     <div class="wonder-stage reveal" aria-label="A luminous transparent human form showing the living systems within">
-      <canvas id="humanFigureCanvas"></canvas>
+      <video class="wonder-video" autoplay muted loop playsinline preload="metadata">
+        <source src="../images/Humanity.mp4" type="video/mp4" />
+      </video>
       <div class="wonder-caption">A living body. A shared miracle.</div>
     </div>
 
@@ -1853,169 +1857,6 @@ footer .copy {
 })();
 </script>
 
-<script type="module">
-import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
-
-const canvas = document.getElementById('humanFigureCanvas');
-if (canvas) {
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(34, 1, 0.1, 100);
-  camera.position.set(0, 0.35, 8.2);
-
-  const renderer = new THREE.WebGLRenderer({
-    canvas,
-    antialias: true,
-    alpha: true
-  });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-  renderer.setClearColor(0x000000, 0);
-
-  const figure = new THREE.Group();
-  scene.add(figure);
-
-  const gold = new THREE.Color('#D4A437');
-  const teal = new THREE.Color('#5FBFB3');
-  const bone = new THREE.Color('#e8dcc5');
-
-  const bodyMat = new THREE.MeshPhysicalMaterial({
-    color: 0xd8d4c8,
-    transparent: true,
-    opacity: 0.11,
-    roughness: 0.2,
-    metalness: 0,
-    transmission: 0.55,
-    thickness: 0.55,
-    side: THREE.DoubleSide,
-    depthWrite: false
-  });
-  const bodyWireMat = new THREE.MeshBasicMaterial({
-    color: 0x5fbfb3,
-    transparent: true,
-    opacity: 0.22,
-    wireframe: true
-  });
-  const organMat = new THREE.MeshBasicMaterial({
-    color: gold,
-    transparent: true,
-    opacity: 0.82
-  });
-  const lungMat = new THREE.MeshBasicMaterial({
-    color: teal,
-    transparent: true,
-    opacity: 0.38,
-    wireframe: true
-  });
-  const nerveMat = new THREE.LineBasicMaterial({
-    color: 0xebc457,
-    transparent: true,
-    opacity: 0.5
-  });
-  const boneMat = new THREE.MeshBasicMaterial({
-    color: bone,
-    transparent: true,
-    opacity: 0.18,
-    wireframe: true
-  });
-
-  function mesh(geometry, material, position, scale, rotation) {
-    const item = new THREE.Mesh(geometry, material);
-    item.position.set(...position);
-    item.scale.set(...scale);
-    if (rotation) item.rotation.set(...rotation);
-    figure.add(item);
-    return item;
-  }
-
-  const torso = mesh(new THREE.SphereGeometry(1, 48, 48), bodyMat, [0, 0.15, 0], [1.02, 1.85, 0.42]);
-  mesh(new THREE.SphereGeometry(1.01, 32, 32), bodyWireMat, [0, 0.15, 0], [1.04, 1.87, 0.43]);
-  mesh(new THREE.SphereGeometry(0.55, 36, 36), bodyMat, [0, 2.35, 0], [0.82, 1, 0.82]);
-  mesh(new THREE.SphereGeometry(0.56, 24, 24), bodyWireMat, [0, 2.35, 0], [0.82, 1, 0.82]);
-  mesh(new THREE.CylinderGeometry(0.24, 0.36, 0.8, 24), bodyMat, [0, 1.63, 0], [1, 1, 1]);
-
-  const limbGeo = new THREE.CylinderGeometry(0.12, 0.16, 1.8, 20);
-  mesh(limbGeo, bodyMat, [-0.92, 0.15, 0], [1, 1, 1], [0, 0, -0.25]);
-  mesh(limbGeo, bodyMat, [0.92, 0.15, 0], [1, 1, 1], [0, 0, 0.25]);
-  mesh(limbGeo, bodyWireMat, [-0.92, 0.15, 0], [1.04, 1, 1.04], [0, 0, -0.25]);
-  mesh(limbGeo, bodyWireMat, [0.92, 0.15, 0], [1.04, 1, 1.04], [0, 0, 0.25]);
-
-  const legGeo = new THREE.CylinderGeometry(0.17, 0.2, 2.2, 20);
-  mesh(legGeo, bodyMat, [-0.35, -2.15, 0], [1, 1, 1], [0, 0, 0.08]);
-  mesh(legGeo, bodyMat, [0.35, -2.15, 0], [1, 1, 1], [0, 0, -0.08]);
-  mesh(legGeo, bodyWireMat, [-0.35, -2.15, 0], [1.04, 1, 1.04], [0, 0, 0.08]);
-  mesh(legGeo, bodyWireMat, [0.35, -2.15, 0], [1.04, 1, 1.04], [0, 0, -0.08]);
-
-  const spine = mesh(new THREE.CylinderGeometry(0.035, 0.035, 3.05, 16), boneMat, [0, 0.23, -0.08], [1, 1, 1]);
-  const heart = mesh(new THREE.SphereGeometry(0.18, 32, 32), organMat, [-0.18, 0.62, 0.18], [1, 1.15, 1]);
-  const leftLung = mesh(new THREE.SphereGeometry(0.38, 32, 32), lungMat, [-0.33, 0.68, 0.08], [0.72, 1.25, 0.42]);
-  const rightLung = mesh(new THREE.SphereGeometry(0.38, 32, 32), lungMat, [0.33, 0.68, 0.08], [0.72, 1.25, 0.42]);
-  const brain = mesh(new THREE.SphereGeometry(0.34, 28, 28), lungMat, [0, 2.48, 0.08], [1, 0.62, 0.82]);
-
-  function makeLine(points, material = nerveMat) {
-    const geometry = new THREE.BufferGeometry().setFromPoints(points.map((point) => new THREE.Vector3(...point)));
-    const line = new THREE.Line(geometry, material);
-    figure.add(line);
-    return line;
-  }
-
-  makeLine([[0, 2.25, 0.1], [0, 1.4, 0.12], [0, 0.1, 0.12], [0, -1.35, 0.1], [-0.3, -2.9, 0.08]]);
-  makeLine([[0, 2.25, 0.1], [0, 1.4, 0.12], [0, 0.1, 0.12], [0, -1.35, 0.1], [0.3, -2.9, 0.08]]);
-  makeLine([[0, 1.05, 0.12], [-0.75, 0.65, 0.1], [-1.08, -0.8, 0.06]]);
-  makeLine([[0, 1.05, 0.12], [0.75, 0.65, 0.1], [1.08, -0.8, 0.06]]);
-
-  const aura = new THREE.Group();
-  figure.add(aura);
-  for (let i = 0; i < 3; i += 1) {
-    const ring = new THREE.Mesh(
-      new THREE.TorusGeometry(1.75 + i * 0.18, 0.006, 10, 120),
-      new THREE.MeshBasicMaterial({
-        color: i % 2 ? gold : teal,
-        transparent: true,
-        opacity: 0.28 - i * 0.05
-      })
-    );
-    ring.rotation.set(Math.PI / 2.5, i * 0.7, i * 0.6);
-    aura.add(ring);
-  }
-
-  scene.add(new THREE.AmbientLight(0xffffff, 0.4));
-  const key = new THREE.PointLight(0x5fbfb3, 2.5, 12);
-  key.position.set(-2.5, 2.8, 4);
-  scene.add(key);
-  const warm = new THREE.PointLight(0xd4a437, 2.2, 12);
-  warm.position.set(2.5, -0.5, 3.5);
-  scene.add(warm);
-
-  function resizeHumanFigure() {
-    const box = canvas.getBoundingClientRect();
-    const width = Math.max(1, box.width);
-    const height = Math.max(1, box.height);
-    camera.aspect = width / height;
-    camera.updateProjectionMatrix();
-    renderer.setSize(width, height, false);
-  }
-
-  const resizeObserver = new ResizeObserver(resizeHumanFigure);
-  resizeObserver.observe(canvas);
-  resizeHumanFigure();
-
-  function animate(time) {
-    const t = time * 0.001;
-    figure.rotation.y = t * 0.32;
-    figure.rotation.x = Math.sin(t * 0.45) * 0.05;
-    heart.scale.setScalar(1 + Math.sin(t * 5.2) * 0.13);
-    leftLung.scale.y = 1.25 + Math.sin(t * 1.6) * 0.08;
-    rightLung.scale.y = 1.25 + Math.sin(t * 1.6) * 0.08;
-    brain.material.opacity = 0.34 + Math.sin(t * 2.2) * 0.08;
-    torso.material.opacity = 0.1 + Math.sin(t * 1.1) * 0.025;
-    aura.rotation.y = -t * 0.18;
-    spine.rotation.y = Math.sin(t * 0.8) * 0.2;
-    renderer.render(scene, camera);
-    requestAnimationFrame(animate);
-  }
-
-  requestAnimationFrame(animate);
-}
-</script>
 
 </body>
 </html>
