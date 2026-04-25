@@ -100,7 +100,7 @@
     color: var(--gold);
     cursor: pointer;
   }
-  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links { display: flex; gap: clamp(1.6rem, 2.4vw, 2.5rem); list-style: none; }
   .nav-links a {
     color: var(--text2);
     text-decoration: none;
@@ -114,6 +114,24 @@
     border-bottom: 1px solid transparent;
   }
   .nav-links a:hover, .nav-links a.active { color: var(--gold); border-bottom-color: var(--gold); }
+  .nav-links a.nav-humanity {
+    color: var(--gold);
+    font-weight: 800;
+    text-shadow: 0 0 12px rgba(201,168,76,0.5);
+    animation: humanity-nav-pulse 1.8s ease-in-out infinite;
+  }
+  .nav-links a.nav-humanity::after {
+    content: '';
+    display: block;
+    height: 1px;
+    margin-top: 3px;
+    background: var(--gold);
+    box-shadow: 0 0 10px rgba(201,168,76,0.75);
+  }
+  @keyframes humanity-nav-pulse {
+    0%, 100% { opacity: 0.72; text-shadow: 0 0 6px rgba(201,168,76,0.25); }
+    50% { opacity: 1; text-shadow: 0 0 18px rgba(201,168,76,0.9), 0 0 30px rgba(201,168,76,0.35); }
+  }
   .nav-mobile-btn { display: none; background: none; border: none; color: var(--text); cursor: pointer; font-size: 22px; }
   .hero {
     min-height: 100vh;
@@ -356,6 +374,7 @@
   .mobile-menu.open { display: flex; }
   .mobile-menu a { font-size: 1.8rem; font-family: var(--font-display); font-weight: 300; color: var(--text); text-decoration: none; letter-spacing: 0.1em; cursor: pointer; transition: color 0.2s; }
   .mobile-menu a:hover { color: var(--gold); }
+  .mobile-menu a.nav-humanity { color: var(--gold); font-weight: 600; animation: humanity-nav-pulse 1.8s ease-in-out infinite; }
   .mobile-close { position: absolute; top: 24px; right: 5vw; background: none; border: none; color: var(--text2); font-size: 28px; cursor: pointer; }
   .quote-section { background: var(--bg2); border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border); padding: 80px 5vw; text-align: center; }
   .blockquote { max-width: 800px; margin: 0 auto; font-family: var(--font-display); font-size: clamp(1.6rem, 4vw, 2.6rem); font-weight: 300; font-style: italic; color: var(--text); line-height: 1.4; }
@@ -432,6 +451,7 @@
     <li><a onclick="showPage('home')" class="active" id="nav-home">Home</a></li>
     <li><a onclick="showPage('pulse')" id="nav-pulse">Pulse</a></li>
     <li><a onclick="showPage('about')" id="nav-about">About</a></li>
+    <li><a href="humanity/" class="nav-humanity" id="nav-humanity">Humanity</a></li>
     <li><a onclick="showPage('blog')" id="nav-blog">Blog</a></li>
     <li><a onclick="showPage('careers')" id="nav-careers">Careers</a></li>
     <li><a onclick="showPage('contact')" id="nav-contact">Contact</a></li>
@@ -444,6 +464,7 @@
   <a onclick="showPage('home');toggleMobileMenu()">Home</a>
   <a onclick="showPage('pulse');toggleMobileMenu()">Pulse</a>
   <a onclick="showPage('about');toggleMobileMenu()">About</a>
+  <a href="humanity/" class="nav-humanity">Humanity</a>
   <a onclick="showPage('blog');toggleMobileMenu()">Blog</a>
   <a onclick="showPage('careers');toggleMobileMenu()">Careers</a>
   <a onclick="showPage('contact');toggleMobileMenu()">Contact</a>
@@ -829,6 +850,7 @@ function createStars() {
 createStars();
  
 function showPage(id) {
+  if (!document.getElementById('page-' + id)) return;
   document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
   document.querySelectorAll('.nav-links a').forEach(function(a){ a.classList.remove('active'); });
   document.getElementById('page-' + id).classList.add('active');
@@ -836,12 +858,19 @@ function showPage(id) {
   if (navEl) navEl.classList.add('active');
   window.scrollTo(0, 0);
 }
+
+function showPageFromHash() {
+  var id = (window.location.hash || '').replace('#', '');
+  if (id) showPage(id);
+}
  
 function toggleMobileMenu() {
   document.getElementById('mobileMenu').classList.toggle('open');
 }
  
 document.addEventListener('DOMContentLoaded', function() {
+  showPageFromHash();
+  window.addEventListener('hashchange', showPageFromHash);
   var form = document.getElementById('netlify-contact-form');
   if (!form) return;
   form.addEventListener('submit', function(e) {
