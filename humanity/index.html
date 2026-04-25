@@ -195,20 +195,20 @@ nav a.active::after {
    HERO
    ============================================================ */
 .hero {
-  min-height: 100vh;
+  min-height: 100svh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   text-align: center;
-  padding: 8rem var(--gutter) 4rem;
+  padding: clamp(5.5rem, 9vh, 7rem) var(--gutter) 4.5rem;
   position: relative;
 }
 
 .hero-orbit {
-  width: clamp(180px, 22vw, 280px);
-  height: clamp(180px, 22vw, 280px);
-  margin-bottom: 2rem;
+  width: clamp(128px, 14vw, 190px);
+  height: clamp(128px, 14vw, 190px);
+  margin-bottom: clamp(1rem, 2vh, 1.5rem);
   position: relative;
   animation: floatOrbit 8s ease-in-out infinite;
 }
@@ -227,7 +227,7 @@ nav a.active::after {
   font-weight: 400;
   letter-spacing: 0.45em;
   text-transform: uppercase;
-  margin-bottom: 2.5rem;
+  margin-bottom: clamp(1rem, 2vh, 1.5rem);
 }
 .overline::before, .overline::after {
   content: '';
@@ -240,20 +240,20 @@ nav a.active::after {
 .hero h1 {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(2rem, 5vw, 3.75rem);
+  font-size: clamp(1.8rem, 3.6vw, 3.1rem);
   letter-spacing: 0.08em;
   color: var(--white);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0;
   line-height: 1.1;
 }
 
 .hero-mega {
   font-family: var(--font-mono-display);
   font-weight: 400;
-  font-size: clamp(4.5rem, 17vw, 16rem);
+  font-size: clamp(4rem, 13vw, 12rem);
   letter-spacing: 0.02em;
   line-height: 0.95;
-  margin: 0.25em 0;
+  margin: 0.08em 0 0.03em;
   background: linear-gradient(180deg, #ffffff 0%, #ffffff 55%, var(--gold) 55%, var(--gold) 100%);
   -webkit-background-clip: text;
   background-clip: text;
@@ -273,8 +273,8 @@ nav a.active::after {
   font-size: clamp(0.85rem, 1.3vw, 1.05rem);
   letter-spacing: 0.4em;
   text-transform: uppercase;
-  margin-top: 1.5rem;
-  margin-bottom: 2.5rem;
+  margin-top: 0.8rem;
+  margin-bottom: clamp(1rem, 2vh, 1.5rem);
 }
 .tagline span { white-space: nowrap; }
 .tagline .dot {
@@ -286,10 +286,10 @@ nav a.active::after {
 
 .hero p.lead {
   max-width: 640px;
-  margin: 0 auto 3rem;
+  margin: 0 auto clamp(1.25rem, 2.5vh, 2rem);
   color: var(--text);
   font-size: clamp(1rem, 1.2vw, 1.15rem);
-  line-height: 1.85;
+  line-height: 1.7;
   font-weight: 300;
 }
 
@@ -336,25 +336,26 @@ nav a.active::after {
 
 .scroll-cue {
   position: absolute;
-  bottom: 2.5rem;
+  bottom: 1rem;
   left: 50%;
   transform: translateX(-50%);
-  color: var(--text-faint);
-  font-size: 0.7rem;
+  color: var(--gold);
+  font-size: 0.72rem;
   letter-spacing: 0.4em;
   text-transform: uppercase;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.75rem;
-  opacity: 0.7;
+  opacity: 0.95;
   animation: floatCue 3s ease-in-out infinite;
 }
 .scroll-cue::after {
   content: '';
   width: 1px;
-  height: 40px;
-  background: linear-gradient(180deg, var(--gold), transparent);
+  height: 48px;
+  background: linear-gradient(180deg, var(--gold), rgba(212, 164, 55, 0.08));
+  box-shadow: 0 0 16px rgba(212, 164, 55, 0.55);
 }
 @keyframes floatCue {
   0%, 100% { transform: translate(-50%, 0); opacity: 0.4; }
@@ -365,7 +366,7 @@ nav a.active::after {
    SECTION GENERICS
    ============================================================ */
 section {
-  padding: clamp(6rem, 12vh, 10rem) var(--gutter);
+  padding: clamp(4.5rem, 9vh, 7.5rem) var(--gutter);
   position: relative;
 }
 .container {
@@ -884,6 +885,15 @@ footer .copy {
    RESPONSIVE TWEAKS
    ============================================================ */
 @media (max-width: 640px) {
+  .hero {
+    min-height: auto;
+    padding-top: 5.25rem;
+    padding-bottom: 3.5rem;
+  }
+  .hero-orbit {
+    width: 120px;
+    height: 120px;
+  }
   .tagline { gap: 0.6rem; }
   .tagline .dot { display: none; }
   .tagline span:not(:last-child)::after {
@@ -892,7 +902,8 @@ footer .copy {
     margin-left: 0.6rem;
   }
   .share-list li .num { display: block; margin-bottom: 0.3rem; }
-  .scroll-cue { display: none; }
+  .scroll-cue { position: static; transform: none; margin-top: 2rem; }
+  .scroll-cue::after { height: 32px; }
 }
 </style>
 </head>
