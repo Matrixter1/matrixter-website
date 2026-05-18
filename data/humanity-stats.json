@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-05-17T06:30:22.143Z",
-  "displayUpdatedAt": "17 May 2026",
+  "generatedAt": "2026-05-18T07:06:00.240Z",
+  "displayUpdatedAt": "18 May 2026",
   "note": "Global figures are rounded estimates. Population and births are refreshed daily from public demographic datasets; language, country, religion, and genetics figures are reference values.",
   "stats": {
     "population": {
-      "value": 8288000000,
+      "value": 8289000000,
       "short": "8.3B",
       "label": "Hearts Beating Now",
       "source": "World Bank WDI SP.POP.TOTL 2024, adjusted with SP.POP.GROW 2024"
