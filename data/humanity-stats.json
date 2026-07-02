@@ -1,17 +1,17 @@
 {
-  "generatedAt": "2026-07-01T07:20:23.064Z",
-  "displayUpdatedAt": "1 July 2026",
+  "generatedAt": "2026-07-02T06:50:36.143Z",
+  "displayUpdatedAt": "2 July 2026",
   "note": "Global figures are rounded estimates. Population and births are refreshed daily from public demographic datasets; language, country, religion, and genetics figures are reference values.",
   "stats": {
     "population": {
-      "value": 8290000000,
+      "value": 8291000000,
       "short": "8.3B",
       "label": "Hearts Beating Now",
       "source": "World Bank WDI SP.POP.TOTL 2025, adjusted with SP.POP.GROW 2025"
     },
     "birthsPerDay": {
-      "value": 370000,
-      "short": "370,000",
+      "value": 369000,
+      "short": "369,000",
       "label": "Born Today",
       "source": "World Bank WDI SP.DYN.CBRT.IN 2024"
     },
