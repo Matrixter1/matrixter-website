@@ -12,7 +12,7 @@
  
 <!-- Primary SEO -->
 <title>Matrixter &mdash; Awaken. Empower. Transcend.</title>
-<meta name="description" content="Matrixter is a conscious technology movement built on truth, authenticity, and sovereignty. Explore Pulse &mdash; a real-time platform measuring what humanity truly thinks and feels.">
+<meta name="description" content="Matrixter is a conscious technology movement built on truth, authenticity, and sovereignty. Explore Pulse &mdash; a platform for sharing perspectives and exploring how people think and feel.">
 <meta name="keywords" content="Matrixter, Pulse app, conscious technology, truth platform, real-time opinions, human awakening, sovereignty, authentic expression">
 <meta name="author" content="Matrixter">
 <meta name="robots" content="index, follow">
@@ -22,7 +22,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.matrixter.com/">
 <meta property="og:title" content="Matrixter &mdash; Awaken. Empower. Transcend.">
-<meta property="og:description" content="Matrixter is a conscious technology movement built on truth, authenticity, and sovereignty. Explore Pulse &mdash; a real-time platform measuring what humanity truly thinks and feels.">
+<meta property="og:description" content="Matrixter is a conscious technology movement built on truth, authenticity, and sovereignty. Explore Pulse &mdash; a platform for sharing perspectives and exploring how people think and feel.">
 <meta property="og:image" content="https://www.matrixter.com/og-image.jpg">
 <meta property="og:site_name" content="Matrixter">
 <meta property="og:locale" content="en_US">
@@ -31,7 +31,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:url" content="https://www.matrixter.com/">
 <meta name="twitter:title" content="Matrixter &mdash; Awaken. Empower. Transcend.">
-<meta name="twitter:description" content="A conscious technology movement built on truth, authenticity, and sovereignty. Introducing Pulse &mdash; truth measured by humanity.">
+<meta name="twitter:description" content="A conscious technology movement built on truth, authenticity, and sovereignty. Explore Pulse and discover Humanity.">
 <meta name="twitter:image" content="https://www.matrixter.com/og-image.jpg">
  
 <!-- Schema.org Structured Data -->
@@ -443,11 +443,12 @@
   .nav-mark-text{font-family:var(--font-body);font-size:18px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--white)}
   .nav-mark-text span{color:var(--gold)}
 </style>
+<link rel="stylesheet" href="/facelift.css">
 </head>
 <body>
  
-<nav>
-  <div class="nav-mark" onclick="showPage('home')">
+<nav aria-label="Primary">
+  <a class="nav-mark" href="#home" aria-label="Matrixter home">
     <svg width="32" height="32" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
       <ellipse class="sm-p1" cx="110" cy="76" rx="16" ry="34" fill="none" stroke="#4CC9A8" stroke-linecap="round"/>
       <ellipse class="sm-p2" cx="110" cy="76" rx="16" ry="34" fill="none" stroke="#c9a84c" stroke-linecap="round" transform="rotate(60 110 110)"/>
@@ -459,28 +460,26 @@
       <text class="sm-m" x="110" y="118" text-anchor="middle" font-size="19" font-weight="700" fill="#c9a84c" font-family="Syne,monospace">M</text>
     </svg>
     <span class="nav-mark-text">MATRI<span>XTER</span></span>
-  </div>
+  </a>
   <ul class="nav-links">
-    <li><a onclick="showPage('home')" class="active" id="nav-home">Home</a></li>
-    <li><a onclick="showPage('pulse')" id="nav-pulse">Pulse</a></li>
-    <li><a onclick="showPage('about')" id="nav-about">About</a></li>
+    <li><a href="#home" class="active" id="nav-home">Home</a></li>
+    <li><a href="#pulse" id="nav-pulse">Pulse</a></li>
+    <li><a href="#about" id="nav-about">About</a></li>
     <li><a href="humanity/" class="nav-humanity" id="nav-humanity">Humanity</a></li>
-    <li><a onclick="showPage('blog')" id="nav-blog">Blog</a></li>
-    <li><a onclick="showPage('careers')" id="nav-careers">Careers</a></li>
-    <li><a onclick="showPage('contact')" id="nav-contact">Contact</a></li>
+    <li><a href="#blog" id="nav-blog">Blog</a></li>
+    <li><a href="#contact" id="nav-contact">Contact</a></li>
   </ul>
-  <button class="nav-mobile-btn" onclick="toggleMobileMenu()">&#9776;</button>
+  <button class="nav-mobile-btn" onclick="toggleMobileMenu()" aria-label="Open menu" aria-controls="mobileMenu" aria-expanded="false">&#9776;</button>
 </nav>
  
-<div class="mobile-menu" id="mobileMenu">
-  <button class="mobile-close" onclick="toggleMobileMenu()">&#10005;</button>
-  <a onclick="showPage('home');toggleMobileMenu()">Home</a>
-  <a onclick="showPage('pulse');toggleMobileMenu()">Pulse</a>
-  <a onclick="showPage('about');toggleMobileMenu()">About</a>
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <button class="mobile-close" onclick="toggleMobileMenu()" aria-label="Close menu">&#10005;</button>
+  <a href="#home">Home</a>
+  <a href="#pulse">Pulse</a>
+  <a href="#about">About</a>
   <a href="humanity/" class="nav-humanity">Humanity</a>
-  <a onclick="showPage('blog');toggleMobileMenu()">Blog</a>
-  <a onclick="showPage('careers');toggleMobileMenu()">Careers</a>
-  <a onclick="showPage('contact');toggleMobileMenu()">Contact</a>
+  <a href="#blog">Blog</a>
+  <a href="#contact">Contact</a>
 </div>
  
 <!-- HOME -->
@@ -489,7 +488,7 @@
     <div class="stars" id="stars"></div>
  
     <!-- Sacred Geometry Mark -->
-    <div class="sacred-mark">
+    <div class="sacred-mark" aria-hidden="true">
       <svg width="260" height="260" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <linearGradient id="sm-gt" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -527,23 +526,39 @@
       </svg>
     </div>
  
-    <div class="hero-eyebrow">The Movement Begins</div>
-    <h1>WELCOME TO<br><span class="hero-brand" style="font-family:var(--font-body);font-weight:800;letter-spacing:0.1em;font-style:normal;">MATRI<em style="font-style:normal;color:var(--gold);">XTER</em></span></h1>
+    <h1><span class="hero-brand" style="font-family:var(--font-body);font-weight:800;letter-spacing:0.1em;font-style:normal;">MATRI<em style="font-style:normal;color:var(--gold);">XTER</em></span></h1>
     <div class="hero-tagline">Awaken &nbsp;&middot;&nbsp; Empower &nbsp;&middot;&nbsp; Transcend</div>
-    <p class="hero-body">Matrixter is a movement built on truth, authenticity, and sovereignty. We are here to challenge the system, expand awareness, and help you reconnect with who you truly are.</p>
+    <p class="hero-body">Tools and ideas for independent thought, authentic expression, and a more connected humanity.</p>
     <div class="hero-ctas">
-      <a href="https://pulse.matrixter.com" class="btn-primary" target="_blank" style="text-decoration:none;">Explore Pulse</a>
-      <button class="btn-outline" onclick="showPage('contact')">Join the Movement</button>
+      <a href="https://pulse.matrixter.com" class="btn-primary" target="_blank" rel="noopener noreferrer" style="text-decoration:none;">Explore Pulse</a>
+      <a class="btn-outline" href="humanity/">Discover Humanity</a>
     </div>
   </section>
- 
+
+  <section class="experiences section" aria-labelledby="experiences-title">
+    <div class="experience-intro">
+      <div><span class="section-eyebrow">Explore Matrixter</span><h2 class="section-title" id="experiences-title">Your perspective.<br>A world we <em>share.</em></h2></div>
+      <p class="section-body">Start with a question. Discover a connection. Explore two ways to take part.</p>
+    </div>
+    <div class="experience-grid">
+      <article class="experience-card experience-pulse">
+        <a class="experience-preview" href="https://pulse.matrixter.com/feed" aria-label="Explore the Pulse feed"><img src="images/pulse-preview.webp" width="1280" height="850" loading="lazy" decoding="async" alt="Pulse feed showing a ranking question and anonymous voting options"><span class="preview-caption">Inside Pulse &nearr;</span></a>
+        <div class="experience-copy"><span class="experience-label">Your perspective &middot; Web beta</span><h3>Pulse</h3><p>Share what you think and feel. Explore questions, cast your vote, and discover where perspectives meet and differ.</p><a class="experience-link" href="https://pulse.matrixter.com/feed">Explore Pulse <span aria-hidden="true">&nearr;</span></a></div>
+      </article>
+      <article class="experience-card experience-humanity">
+        <a class="experience-preview" href="humanity/" aria-label="Discover the Humanity experience"><img src="images/humanity-preview.webp" width="1280" height="850" loading="lazy" decoding="async" alt="The Humanity experience, an invitation to explore what connects us"><span class="preview-caption">Discover our shared world &rarr;</span></a>
+        <div class="experience-copy"><span class="experience-label">Our shared connection</span><h3>Humanity</h3><p>Beyond our differences is an extraordinary shared story. Explore the body, the planet, and the connections that make us human.</p><a class="experience-link" href="humanity/">Discover Humanity <span aria-hidden="true">&rarr;</span></a></div>
+      </article>
+    </div>
+  </section>
+
   <div class="divider-section"><div class="divider"></div></div>
  
   <section class="section">
     <span class="section-eyebrow">What We Are</span>
     <h2 class="section-title">Where <em>consciousness</em><br>meets technology</h2>
-    <p class="section-body">We create tools, content, and platforms designed to break mental conditioning, encourage authentic expression, and empower personal sovereignty.</p>
-    <p class="section-body" style="margin-top:1rem;font-style:italic;color:var(--text3);">This is not about following &mdash; this is about remembering.</p>
+    <p class="section-body">We build spaces to question openly, express yourself honestly, and explore what connects us. Independent thought and human connection guide everything we create.</p>
+    <a class="experience-link" href="#about">Meet the mission behind Matrixter <span aria-hidden="true">&rarr;</span></a>
   </section>
  
   <div class="divider-section"><div class="divider"></div></div>
@@ -562,31 +577,6 @@
     </div>
   </div>
  
-  <div class="pulse-highlight">
-    <div class="pulse-inner">
-      <div>
-        <span class="section-eyebrow">Pulse Beta Is Live</span>
-        <h2 class="section-title">Truth, <em>measured</em><br>by humanity</h2>
-        <p class="section-body">Pulse is now live on the web in beta, with the mobile app actively being built. It gives people a place to vote anonymously, compare public sentiment with verified-human conviction, and watch the Truth Gap emerge in real time.</p>
-        <ul class="feature-list" style="margin-top:2rem;">
-          <li>Browse a live feed of questions across culture, politics, spirituality, and more</li>
-          <li>See where verified truth diverges from popular opinion through the Truth Gap</li>
-          <li>Track a product already evolving fast on web while the mobile experience takes shape</li>
-        </ul>
-        <div style="margin-top:2.5rem;display:flex;gap:14px;flex-wrap:wrap;">
-          <a href="https://pulse.matrixter.com" class="btn-primary" target="_blank" style="text-decoration:none;">Enter Pulse Beta</a>
-          <button class="btn-outline" onclick="showPage('pulse')">See What's Live</button>
-        </div>
-      </div>
-      <div class="pulse-visual">
-        <div class="pulse-ring"></div>
-        <div class="pulse-ring"></div>
-        <div class="pulse-ring"></div>
-        <div class="pulse-core"><span class="pulse-word">Pulse</span></div>
-      </div>
-    </div>
-  </div>
- 
   <div class="quote-section">
     <p class="blockquote">"Attention is energy. Truth resonates.<br><span>Awareness changes everything.</span>"</p>
   </div>
@@ -595,11 +585,11 @@
     <div class="footer-inner">
       <div><div class="footer-logo" style="display:flex;align-items:center;gap:8px;"><svg width="20" height="20" viewBox="0 0 220 220"><ellipse cx="110" cy="76" rx="16" ry="34" fill="none" stroke="#4CC9A8" stroke-width="2"/><ellipse cx="110" cy="76" rx="16" ry="34" fill="none" stroke="#c9a84c" stroke-width="2" transform="rotate(60 110 110)"/><ellipse cx="110" cy="76" rx="16" ry="34" fill="none" stroke="#4CC9A8" stroke-width="2" transform="rotate(120 110 110)"/><ellipse cx="110" cy="76" rx="16" ry="34" fill="none" stroke="#c9a84c" stroke-width="2" transform="rotate(180 110 110)"/><ellipse cx="110" cy="76" rx="16" ry="34" fill="none" stroke="#4CC9A8" stroke-width="2" transform="rotate(240 110 110)"/><ellipse cx="110" cy="76" rx="16" ry="34" fill="none" stroke="#c9a84c" stroke-width="2" transform="rotate(300 110 110)"/><circle cx="110" cy="110" r="22" fill="#060608" stroke="#4CC9A8" stroke-width="2.5"/><text x="110" y="118" text-anchor="middle" font-size="19" font-weight="700" fill="#c9a84c" font-family="Syne,monospace">M</text></svg>Matrixter</div><div class="footer-tagline">Built with purpose</div></div>
       <ul class="footer-links">
-        <li><a onclick="showPage('about')">About</a></li>
-        <li><a onclick="showPage('pulse')">Pulse</a></li>
-        <li><a onclick="showPage('blog')">Blog</a></li>
-        <li><a onclick="showPage('careers')">Careers</a></li>
-        <li><a onclick="showPage('contact')">Contact</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#pulse">Pulse</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#careers">Careers</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
       <div class="footer-copy">Matrixter &copy; 2026</div>
     </div>
@@ -617,10 +607,10 @@
     <div style="position:relative;z-index:1;">
       <div class="hero-eyebrow">Web Beta Live &middot; Mobile App In Active Build</div>
       <h1 style="font-family:var(--font-display);font-size:clamp(3rem,8vw,7rem);font-weight:300;color:var(--white);text-align:center;margin-bottom:1.5rem;line-height:1;">Pulse <em style="font-style:italic;color:var(--gold);">is live</em></h1>
-      <p style="font-size:17px;color:var(--text2);max-width:720px;text-align:center;line-height:1.8;margin:0 auto 3rem;">Pulse is now a live beta experience where people can vote anonymously, see the Truth Gap between public opinion and verified-human conviction, and watch a new signal layer form in real time. The web platform is live now. The mobile app is being built next.</p>
+      <p style="font-size:17px;color:var(--text2);max-width:720px;text-align:center;line-height:1.8;margin:0 auto 3rem;">Explore questions that matter to you, vote anonymously, and see how perspectives compare. Pulse is available on the web in beta, with a mobile experience in development.</p>
       <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
-        <a href="https://pulse.matrixter.com" class="btn-primary" target="_blank" style="text-decoration:none;">Enter Pulse Beta</a>
-        <a href="https://pulse.matrixter.com/feed" class="btn-outline" target="_blank" style="text-decoration:none;">View Live Feed</a>
+        <a href="https://pulse.matrixter.com" class="btn-primary" target="_blank" rel="noopener noreferrer" style="text-decoration:none;">Enter Pulse Beta</a>
+        <a href="https://pulse.matrixter.com/feed" class="btn-outline" target="_blank" rel="noopener noreferrer" style="text-decoration:none;">View Live Feed</a>
       </div>
     </div>
   </section>
@@ -629,8 +619,8 @@
  
   <section class="section">
     <span class="section-eyebrow">What Pulse Is Now</span>
-    <h2 class="section-title">A live signal layer<br>for <em>human truth</em></h2>
-    <p class="section-body">Pulse is more than a concept page now. It is a working beta platform with a live feed, ranked and choice-based questions, anonymous participation, verified identity layers, suggestions, upcoming reveals, and media-rich moments that make the questions feel alive.</p>
+    <h2 class="section-title">A place for<br><em>your perspective</em></h2>
+    <p class="section-body">Browse a feed of questions, share your view through votes and rankings, and explore community responses. You can also suggest the questions you want people to consider.</p>
   </section>
  
   <div class="divider-section"><div class="divider"></div></div>
@@ -642,12 +632,12 @@
       <div class="why-card">
         <div class="why-icon">I</div>
         <div class="why-title">Web Beta</div>
-        <div class="why-body">Pulse already has a live web experience with feed, voting, results, admin tooling, suggestions, verification, and upcoming reveal states.</div>
+        <div class="why-body">Explore the live feed, vote on questions, view results, and suggest a topic for the community.</div>
       </div>
       <div class="why-card">
         <div class="why-icon">II</div>
         <div class="why-title">Truth Gap</div>
-        <div class="why-body">Pulse does not just show what the crowd says. It shows where verified-human conviction diverges from popular opinion, creating a new layer of clarity.</div>
+        <div class="why-body">The Truth Gap compares public opinion with responses from verified participants. It describes a difference in perspectives; identity verification does not establish whether an opinion is factually true.</div>
       </div>
       <div class="why-card">
         <div class="why-icon">III</div>
@@ -662,10 +652,10 @@
   <section class="section">
     <span class="section-eyebrow">Why It Matters</span>
     <h2 class="section-title">We live in a world where<br><em>perception is engineered</em></h2>
-    <p class="section-body">Most systems show people a narrative. Pulse is being built to show the signal underneath the narrative. Not what an algorithm boosts. Not what a headline frames. What people actually think, and where deeper verified conviction begins to part ways with the surface consensus.</p>
+    <p class="section-body">A headline cannot capture every perspective. Pulse gives people a way to express their own view and explore how others respond, with room for agreement, disagreement, and uncertainty.</p>
     <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:2.5rem;">
-      <a href="https://pulse.matrixter.com" class="btn-primary" target="_blank" style="text-decoration:none;">Open Pulse</a>
-      <a href="https://pulse.matrixter.com/suggestions" class="btn-outline" target="_blank" style="text-decoration:none;">See Community Suggestions</a>
+      <a href="https://pulse.matrixter.com" class="btn-primary" target="_blank" rel="noopener noreferrer" style="text-decoration:none;">Open Pulse</a>
+      <a href="https://pulse.matrixter.com/suggestions" class="btn-outline" target="_blank" rel="noopener noreferrer" style="text-decoration:none;">See Community Suggestions</a>
     </div>
   </section>
  
@@ -677,9 +667,9 @@
     <div class="footer-inner">
       <div><div class="footer-logo" style="display:flex;align-items:center;gap:8px;"><svg width="20" height="20" viewBox="0 0 220 220"><ellipse cx="110" cy="76" rx="16" ry="34" fill="none" stroke="#4CC9A8" stroke-width="2"/><ellipse cx="110" cy="76" rx="16" ry="34" fill="none" stroke="#c9a84c" stroke-width="2" transform="rotate(60 110 110)"/><ellipse cx="110" cy="76" rx="16" ry="34" fill="none" stroke="#4CC9A8" stroke-width="2" transform="rotate(120 110 110)"/><ellipse cx="110" cy="76" rx="16" ry="34" fill="none" stroke="#c9a84c" stroke-width="2" transform="rotate(180 110 110)"/><ellipse cx="110" cy="76" rx="16" ry="34" fill="none" stroke="#4CC9A8" stroke-width="2" transform="rotate(240 110 110)"/><ellipse cx="110" cy="76" rx="16" ry="34" fill="none" stroke="#c9a84c" stroke-width="2" transform="rotate(300 110 110)"/><circle cx="110" cy="110" r="22" fill="#060608" stroke="#4CC9A8" stroke-width="2.5"/><text x="110" y="118" text-anchor="middle" font-size="19" font-weight="700" fill="#c9a84c" font-family="Syne,monospace">M</text></svg>Matrixter</div><div class="footer-tagline">Built with purpose</div></div>
       <ul class="footer-links">
-        <li><a onclick="showPage('home')">Home</a></li>
-        <li><a onclick="showPage('about')">About</a></li>
-        <li><a onclick="showPage('contact')">Contact</a></li>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
       <div class="footer-copy">Matrixter &copy; 2026</div>
     </div>
@@ -726,9 +716,9 @@
     <div class="footer-inner">
       <div><div class="footer-logo" style="display:flex;align-items:center;gap:8px;"><svg width="20" height="20" viewBox="0 0 220 220"><ellipse cx="110" cy="76" rx="16" ry="34" fill="none" stroke="#4CC9A8" stroke-width="2"/><ellipse cx="110" cy="76" rx="16" ry="34" fill="none" stroke="#c9a84c" stroke-width="2" transform="rotate(60 110 110)"/><ellipse cx="110" cy="76" rx="16" ry="34" fill="none" stroke="#4CC9A8" stroke-width="2" transform="rotate(120 110 110)"/><ellipse cx="110" cy="76" rx="16" ry="34" fill="none" stroke="#c9a84c" stroke-width="2" transform="rotate(180 110 110)"/><ellipse cx="110" cy="76" rx="16" ry="34" fill="none" stroke="#4CC9A8" stroke-width="2" transform="rotate(240 110 110)"/><ellipse cx="110" cy="76" rx="16" ry="34" fill="none" stroke="#c9a84c" stroke-width="2" transform="rotate(300 110 110)"/><circle cx="110" cy="110" r="22" fill="#060608" stroke="#4CC9A8" stroke-width="2.5"/><text x="110" y="118" text-anchor="middle" font-size="19" font-weight="700" fill="#c9a84c" font-family="Syne,monospace">M</text></svg>Matrixter</div><div class="footer-tagline">Built with purpose</div></div>
       <ul class="footer-links">
-        <li><a onclick="showPage('home')">Home</a></li>
-        <li><a onclick="showPage('pulse')">Pulse</a></li>
-        <li><a onclick="showPage('contact')">Contact</a></li>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#pulse">Pulse</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
       <div class="footer-copy">Matrixter &copy; 2026</div>
     </div>
@@ -757,22 +747,22 @@
       <form name="contact" netlify netlify-honeypot="bot-field" id="netlify-contact-form" style="display:contents;">
         <input type="hidden" name="form-name" value="contact">
         <p style="display:none;"><input name="bot-field"></p>
-        <div class="form-group"><label class="form-label">Name</label><input type="text" name="name" class="form-input" placeholder="Your name" id="c-name" required></div>
-        <div class="form-group"><label class="form-label">Email</label><input type="email" name="email" class="form-input" placeholder="your@email.com" id="c-email" required></div>
-        <div class="form-group"><label class="form-label">Message</label><textarea name="message" class="form-textarea" placeholder="What's on your mind..." id="c-message" required></textarea></div>
+        <div class="form-group"><label class="form-label" for="c-name">Name</label><input type="text" name="name" class="form-input" placeholder="Your name" id="c-name" required></div>
+        <div class="form-group"><label class="form-label" for="c-email">Email</label><input type="email" name="email" class="form-input" placeholder="your@email.com" id="c-email" required></div>
+        <div class="form-group"><label class="form-label" for="c-message">Message</label><textarea name="message" class="form-textarea" placeholder="What's on your mind..." id="c-message" required></textarea></div>
         <button type="submit" class="btn-primary" id="submitBtn">Send Message</button>
       </form>
-      <div class="form-success" id="formSuccess">Message sent. We'll be in touch.</div>
-      <div class="form-error" id="formError">Something went wrong. Please try again.</div>
+      <div class="form-success" id="formSuccess" role="status">Message sent. We'll be in touch.</div>
+      <div class="form-error" id="formError" role="alert">Something went wrong. Please try again.</div>
     </div>
   </div>
   <footer>
     <div class="footer-inner">
       <div><div class="footer-logo" style="display:flex;align-items:center;gap:8px;"><svg width="20" height="20" viewBox="0 0 220 220"><ellipse cx="110" cy="76" rx="16" ry="34" fill="none" stroke="#4CC9A8" stroke-width="2"/><ellipse cx="110" cy="76" rx="16" ry="34" fill="none" stroke="#c9a84c" stroke-width="2" transform="rotate(60 110 110)"/><ellipse cx="110" cy="76" rx="16" ry="34" fill="none" stroke="#4CC9A8" stroke-width="2" transform="rotate(120 110 110)"/><ellipse cx="110" cy="76" rx="16" ry="34" fill="none" stroke="#c9a84c" stroke-width="2" transform="rotate(180 110 110)"/><ellipse cx="110" cy="76" rx="16" ry="34" fill="none" stroke="#4CC9A8" stroke-width="2" transform="rotate(240 110 110)"/><ellipse cx="110" cy="76" rx="16" ry="34" fill="none" stroke="#c9a84c" stroke-width="2" transform="rotate(300 110 110)"/><circle cx="110" cy="110" r="22" fill="#060608" stroke="#4CC9A8" stroke-width="2.5"/><text x="110" y="118" text-anchor="middle" font-size="19" font-weight="700" fill="#c9a84c" font-family="Syne,monospace">M</text></svg>Matrixter</div><div class="footer-tagline">Built with purpose</div></div>
       <ul class="footer-links">
-        <li><a onclick="showPage('home')">Home</a></li>
-        <li><a onclick="showPage('pulse')">Pulse</a></li>
-        <li><a onclick="showPage('about')">About</a></li>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#pulse">Pulse</a></li>
+        <li><a href="#about">About</a></li>
       </ul>
       <div class="footer-copy">Matrixter &copy; 2026</div>
     </div>
@@ -787,15 +777,15 @@
       <span class="section-eyebrow">Work with Us</span>
       <h1 class="section-title">Careers at<br><em>Matrixter</em></h1>
       <p class="section-body" style="margin:1.5rem auto;text-align:center;max-width:480px;">We are building something meaningful &mdash; and we're just getting started. Opportunities will be opening soon. If you resonate with our mission, stay connected.</p>
-      <div style="margin-top:2.5rem;"><button class="btn-primary" onclick="showPage('contact')">Join the Movement</button></div>
+      <div style="margin-top:2.5rem;"><button class="btn-primary" onclick="showPage('contact')">Connect with Us</button></div>
     </div>
   </div>
   <footer>
     <div class="footer-inner">
       <div><div class="footer-logo" style="display:flex;align-items:center;gap:8px;"><svg width="20" height="20" viewBox="0 0 220 220"><ellipse cx="110" cy="76" rx="16" ry="34" fill="none" stroke="#4CC9A8" stroke-width="2"/><ellipse cx="110" cy="76" rx="16" ry="34" fill="none" stroke="#c9a84c" stroke-width="2" transform="rotate(60 110 110)"/><ellipse cx="110" cy="76" rx="16" ry="34" fill="none" stroke="#4CC9A8" stroke-width="2" transform="rotate(120 110 110)"/><ellipse cx="110" cy="76" rx="16" ry="34" fill="none" stroke="#c9a84c" stroke-width="2" transform="rotate(180 110 110)"/><ellipse cx="110" cy="76" rx="16" ry="34" fill="none" stroke="#4CC9A8" stroke-width="2" transform="rotate(240 110 110)"/><ellipse cx="110" cy="76" rx="16" ry="34" fill="none" stroke="#c9a84c" stroke-width="2" transform="rotate(300 110 110)"/><circle cx="110" cy="110" r="22" fill="#060608" stroke="#4CC9A8" stroke-width="2.5"/><text x="110" y="118" text-anchor="middle" font-size="19" font-weight="700" fill="#c9a84c" font-family="Syne,monospace">M</text></svg>Matrixter</div><div class="footer-tagline">Built with purpose</div></div>
       <ul class="footer-links">
-        <li><a onclick="showPage('home')">Home</a></li>
-        <li><a onclick="showPage('contact')">Contact</a></li>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
       <div class="footer-copy">Matrixter &copy; 2026</div>
     </div>
@@ -817,9 +807,9 @@
     <div class="footer-inner">
       <div><div class="footer-logo" style="display:flex;align-items:center;gap:8px;"><svg width="20" height="20" viewBox="0 0 220 220"><ellipse cx="110" cy="76" rx="16" ry="34" fill="none" stroke="#4CC9A8" stroke-width="2"/><ellipse cx="110" cy="76" rx="16" ry="34" fill="none" stroke="#c9a84c" stroke-width="2" transform="rotate(60 110 110)"/><ellipse cx="110" cy="76" rx="16" ry="34" fill="none" stroke="#4CC9A8" stroke-width="2" transform="rotate(120 110 110)"/><ellipse cx="110" cy="76" rx="16" ry="34" fill="none" stroke="#c9a84c" stroke-width="2" transform="rotate(180 110 110)"/><ellipse cx="110" cy="76" rx="16" ry="34" fill="none" stroke="#4CC9A8" stroke-width="2" transform="rotate(240 110 110)"/><ellipse cx="110" cy="76" rx="16" ry="34" fill="none" stroke="#c9a84c" stroke-width="2" transform="rotate(300 110 110)"/><circle cx="110" cy="110" r="22" fill="#060608" stroke="#4CC9A8" stroke-width="2.5"/><text x="110" y="118" text-anchor="middle" font-size="19" font-weight="700" fill="#c9a84c" font-family="Syne,monospace">M</text></svg>Matrixter</div><div class="footer-tagline">Built with purpose</div></div>
       <ul class="footer-links">
-        <li><a onclick="showPage('home')">Home</a></li>
-        <li><a onclick="showPage('pulse')">Pulse</a></li>
-        <li><a onclick="showPage('contact')">Contact</a></li>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#pulse">Pulse</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
       <div class="footer-copy">Matrixter &copy; 2026</div>
     </div>
@@ -839,9 +829,9 @@
     <div class="footer-inner">
       <div><div class="footer-logo" style="display:flex;align-items:center;gap:8px;"><svg width="20" height="20" viewBox="0 0 220 220"><ellipse cx="110" cy="76" rx="16" ry="34" fill="none" stroke="#4CC9A8" stroke-width="2"/><ellipse cx="110" cy="76" rx="16" ry="34" fill="none" stroke="#c9a84c" stroke-width="2" transform="rotate(60 110 110)"/><ellipse cx="110" cy="76" rx="16" ry="34" fill="none" stroke="#4CC9A8" stroke-width="2" transform="rotate(120 110 110)"/><ellipse cx="110" cy="76" rx="16" ry="34" fill="none" stroke="#c9a84c" stroke-width="2" transform="rotate(180 110 110)"/><ellipse cx="110" cy="76" rx="16" ry="34" fill="none" stroke="#4CC9A8" stroke-width="2" transform="rotate(240 110 110)"/><ellipse cx="110" cy="76" rx="16" ry="34" fill="none" stroke="#c9a84c" stroke-width="2" transform="rotate(300 110 110)"/><circle cx="110" cy="110" r="22" fill="#060608" stroke="#4CC9A8" stroke-width="2.5"/><text x="110" y="118" text-anchor="middle" font-size="19" font-weight="700" fill="#c9a84c" font-family="Syne,monospace">M</text></svg>Matrixter</div><div class="footer-tagline">Built with purpose</div></div>
       <ul class="footer-links">
-        <li><a onclick="showPage('home')">Home</a></li>
-        <li><a onclick="showPage('blog')">Blog</a></li>
-        <li><a onclick="showPage('contact')">Contact</a></li>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
       <div class="footer-copy">Matrixter &copy; 2026</div>
     </div>
@@ -863,24 +853,60 @@ function createStars() {
 createStars();
  
 function showPage(id) {
-  if (!document.getElementById('page-' + id)) return;
+  var page = document.getElementById('page-' + id);
+  if (!page) return;
   document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
-  document.querySelectorAll('.nav-links a').forEach(function(a){ a.classList.remove('active'); });
-  document.getElementById('page-' + id).classList.add('active');
+  document.querySelectorAll('.nav-links a').forEach(function(a){ a.classList.remove('active'); a.removeAttribute('aria-current'); });
+  page.classList.add('active');
   var navEl = document.getElementById('nav-' + id);
-  if (navEl) navEl.classList.add('active');
+  if (navEl) { navEl.classList.add('active'); navEl.setAttribute('aria-current', 'page'); }
+  if (id !== 'article' && location.hash !== '#' + id) history.pushState(null, '', '#' + id);
+  closeMobileMenu(false);
   window.scrollTo(0, 0);
+  var heading = page.querySelector('h1');
+  if (heading) { heading.setAttribute('tabindex', '-1'); heading.focus({preventScroll:true}); }
 }
-
 function showPageFromHash() {
-  var id = (window.location.hash || '').replace('#', '');
-  if (id) showPage(id);
+  var id = location.hash.slice(1) || 'home';
+  showPage(document.getElementById('page-' + id) ? id : 'home');
 }
- 
+function closeMobileMenu(restoreFocus) {
+  var menu = document.getElementById('mobileMenu');
+  var wasOpen = menu.classList.contains('open');
+  menu.classList.remove('open');
+  document.querySelector('.nav-mobile-btn').setAttribute('aria-expanded', 'false');
+  document.querySelector('.nav-mobile-btn').setAttribute('aria-label', 'Open menu');
+  document.body.style.overflow = '';
+  if (wasOpen && restoreFocus) document.querySelector('.nav-mobile-btn').focus();
+}
 function toggleMobileMenu() {
-  document.getElementById('mobileMenu').classList.toggle('open');
+  var menu = document.getElementById('mobileMenu');
+  if (menu.classList.contains('open')) { closeMobileMenu(true); return; }
+  menu.classList.add('open');
+  document.querySelector('.nav-mobile-btn').setAttribute('aria-expanded', 'true');
+  document.querySelector('.nav-mobile-btn').setAttribute('aria-label', 'Close menu');
+  document.body.style.overflow = 'hidden';
+  menu.querySelector('button').focus();
 }
- 
+document.addEventListener('keydown', function(e) {
+  var menu = document.getElementById('mobileMenu');
+  if (!menu.classList.contains('open')) return;
+  if (e.key === 'Escape') { e.preventDefault(); closeMobileMenu(true); }
+  if (e.key === 'Tab') {
+    var items = menu.querySelectorAll('a, button');
+    var first = items[0], last = items[items.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  }
+});
+document.addEventListener('click', function(e) {
+  var link = e.target.closest('a[href^="#"]');
+  if (!link || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
+  var id = link.getAttribute('href').slice(1);
+  if (document.getElementById('page-' + id)) { e.preventDefault(); showPage(id); }
+});
+window.addEventListener('resize', function(){ if (innerWidth > 900) closeMobileMenu(false); });
+
 document.addEventListener('DOMContentLoaded', function() {
   showPageFromHash();
   window.addEventListener('hashchange', showPageFromHash);
@@ -973,6 +999,10 @@ function renderPosts(posts) {
   posts.forEach(function(post, i) {
     var card = document.createElement('div');
     card.className = 'blog-card';
+    card.tabIndex = 0;
+    card.setAttribute('role', 'button');
+    card.setAttribute('aria-label', 'Read ' + (post.title || 'article'));
+    card.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openArticle(post); } });
     card.innerHTML =
       '<div class="blog-card-num">0'+(i+1)+'</div>'+
       '<div class="blog-card-category">'+(post.category||'Matrixter')+'</div>'+

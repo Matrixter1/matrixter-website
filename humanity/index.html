@@ -267,13 +267,22 @@ nav a.active::after {
   letter-spacing: 0.02em;
   line-height: 0.95;
   margin: 0.08em 0 0.03em;
+  color: #ffffff;
+
+
+
+
+  display: block;
+  position: relative;
+}
+
+/* Apply the gradient to each animated glyph: transformed children do not reliably inherit a clipped text background. */
+.hero-mega > span {
   background: linear-gradient(180deg, #ffffff 0%, #ffffff 55%, var(--gold) 55%, var(--gold) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
-  display: block;
-  position: relative;
 }
 
 .tagline {
@@ -1370,9 +1379,8 @@ footer .copy {
       <li><a href="../">Home</a></li>
       <li><a href="../#pulse">Pulse</a></li>
       <li><a href="../#about">About</a></li>
-      <li><a href="./" class="active">Humanity</a></li>
+      <li><a href="./" class="active" aria-current="page">Humanity</a></li>
       <li><a href="../#blog">Blog</a></li>
-      <li><a href="../#careers">Careers</a></li>
       <li><a href="../#contact">Contact</a></li>
     </ul>
   </nav>
@@ -1438,7 +1446,7 @@ footer .copy {
   </p>
 
   <div class="cta-row reveal">
-    <a href="#join" class="btn btn-primary">Join the Movement</a>
+    <a href="#join" class="btn btn-primary">Connect with Us</a>
     <a href="#truth" class="btn btn-ghost">Discover the Gift</a>
   </div>
 
@@ -1792,7 +1800,7 @@ footer .copy {
       Awaken to who you truly are &mdash; and to who we have always been together.
     </p>
     <div class="cta-row reveal">
-      <a href="../#contact" class="btn btn-primary">Join the Movement</a>
+      <a href="../#contact" class="btn btn-primary">Connect with Us</a>
       <a href="../#pulse" class="btn btn-ghost">Explore Pulse</a>
     </div>
   </div>
