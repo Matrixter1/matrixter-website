@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "marked": "15.0.12",
+    "yaml": "2.8.2"
+  },
+  "name": "matrixter-website",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/build-blog.mjs"
+  }
+}
